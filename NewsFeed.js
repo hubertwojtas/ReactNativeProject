@@ -1,11 +1,4 @@
-import {
-  View,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  Dimensions,
-} from "react-native";
+import { View, FlatList, Image, StyleSheet, Text } from "react-native";
 import { useState, useEffect } from "react";
 
 const styles = StyleSheet.create({
@@ -18,7 +11,6 @@ const styles = StyleSheet.create({
   },
 });
 
-//const {width, height} = Dimensions.get('screen');
 const url = "https://jsonplaceholder.typicode.com/photos";
 
 async function getPhotos() {
@@ -45,13 +37,13 @@ export default function NewsFeed() {
         showsVerticalScrollIndicator={false}
         style={{ borderColor: "silver", borderWidth: 2 }}
         ItemSeparatorComponent={(props) => {
-            return (<View style={{height: 2, backgroundColor: 'silver'}} />);
-          }}
+          return <View style={{ height: 2, backgroundColor: "silver" }} />;
+        }}
         renderItem={({ item }) => (
           <View>
             <Image
               source={{ uri: item.thumbnailUrl }}
-              style={{width: 300, height: 400}}
+              style={{ width: 300, height: 400 }}
             />
             <Text>View shop</Text>
           </View>
@@ -59,7 +51,8 @@ export default function NewsFeed() {
       />
       <View>
         <Text>
-          <strong>Details</strong><br/>
+          <strong>Details</strong>
+          <br />
           <strong>More details...</strong>
         </Text>
       </View>
