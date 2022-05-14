@@ -1,20 +1,61 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
+import NewsFeed from "./NewsFeed";
+import Search from "./Search";
 
-export default function App() {
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    paddingTop: 50,
+  },
+});
+
+function SearchView() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Search />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function NewsFeedView() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <NewsFeed />
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Search') {
+              iconName = focused ? 'ios-list' : 'ios-list';
+            } else if (route.name === 'News Feed') {
+              iconName = focused ? 'ios-information-circle'
+              : 'ios-information-circle-outline';
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'yellowgreen',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Search" component={SearchView} />
+        <Tab.Screen name="News Feed" component={NewsFeedView} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
