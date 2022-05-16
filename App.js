@@ -1,11 +1,9 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
-import NewsFeed from "./NewsFeed";
-import Search from "./Search";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SearchView } from "./views";
+import { NewsFeedView } from "./views";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,41 +14,27 @@ const styles = StyleSheet.create({
   },
 });
 
-function SearchView() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Search />
-    </View>
-  );
-}
-
-function NewsFeedView() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <NewsFeed />
-    </View>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={({ route }) => ({
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Search') {
-              iconName = focused ? 'ios-list' : 'ios-list';
-            } else if (route.name === 'News Feed') {
-              iconName = focused ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
+            if (route.name === "Search") {
+              iconName = focused ? "ios-list" : "ios-list";
+            } else if (route.name === "News Feed") {
+              iconName = focused
+                ? "ios-information-circle"
+                : "ios-information-circle-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'yellowgreen',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: "yellowgreen",
+          tabBarInactiveTintColor: "gray",
         })}
       >
         <Tab.Screen name="Search" component={SearchView} />

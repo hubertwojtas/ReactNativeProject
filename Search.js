@@ -1,4 +1,11 @@
-import { View, FlatList, Image, StyleSheet, Text } from "react-native";
+import {
+  View,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { useState, useEffect } from "react";
 
 const styles = StyleSheet.create({
@@ -8,6 +15,14 @@ const styles = StyleSheet.create({
     height: "100%",
     paddingTop: 2,
     paddingBottom: 2,
+  },
+  flatlist: {
+    borderColor: "silver",
+    borderWidth: 2,
+  },
+  img: {
+    width: 100,
+    height: 100,
   },
 });
 
@@ -28,17 +43,16 @@ export default function Search() {
     <View style={styles.container}>
       <Text>🔍 Search</Text>
       <FlatList
+        style={styles.flatlist}
         keyExtractor={(item) => item.id}
         data={photos}
         numColumns={3}
         showsVerticalScrollIndicator={false}
-        style={{ borderColor: "silver", borderWidth: 2 }}
         renderItem={({ item }) => (
           <View>
-            <Image
-              source={{ uri: item.thumbnailUrl }}
-              style={{ height: 100, width: 100 }}
-            />
+            <TouchableOpacity>
+              <Image style={styles.img} source={{ uri: item.thumbnailUrl }} />
+            </TouchableOpacity>
           </View>
         )}
       />

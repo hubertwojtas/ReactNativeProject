@@ -9,6 +9,18 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 50,
   },
+  text: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  flatlist: {
+    borderColor: "silver",
+    borderWidth: 2,
+  },
+  img: {
+    width: 300,
+    height: 400,
+  },
 });
 
 const url = "https://jsonplaceholder.typicode.com/photos";
@@ -27,11 +39,10 @@ export default function NewsFeed() {
   return (
     <View style={styles.container}>
       <View>
-        <Text>
-          <strong>Instagram ♡ </strong>
-        </Text>
+        <Text style={styles.text}>Instagram ♡</Text>
       </View>
       <FlatList
+        style={styles.flatlist}
         keyExtractor={(item) => item.id.toString()}
         data={photos}
         showsVerticalScrollIndicator={false}
@@ -41,20 +52,13 @@ export default function NewsFeed() {
         }}
         renderItem={({ item }) => (
           <View>
-            <Image
-              source={{ uri: item.thumbnailUrl }}
-              style={{ width: 300, height: 400 }}
-            />
+            <Image style={styles.img} source={{ uri: item.thumbnailUrl }} />
             <Text>View shop</Text>
           </View>
         )}
       />
       <View>
-        <Text>
-          <strong>Details</strong>
-          <br />
-          <strong>More details...</strong>
-        </Text>
+        <Text style={styles.text}>More details...</Text>
       </View>
     </View>
   );
