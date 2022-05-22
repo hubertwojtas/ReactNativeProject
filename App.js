@@ -23,7 +23,6 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
             if (route.name === "Search") {
               iconName = focused ? "ios-list" : "ios-list";
             } else if (route.name === "News Feed") {

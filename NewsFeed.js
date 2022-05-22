@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     width: 300,
     height: 400,
   },
+  view: {
+    height: 2, 
+    backgroundColor: "silver",
+  },
 });
 
 const url = "https://jsonplaceholder.typicode.com/photos";
@@ -47,7 +51,7 @@ export default function NewsFeed() {
         data={photos}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={(props) => {
-          return <View style={{ height: 2, backgroundColor: "silver" }} />;
+          return <View style={styles.view} />;
         }}
         renderItem={({ item }) => (
           <View>
