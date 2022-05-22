@@ -46,7 +46,6 @@ export default function NewsFeed() {
         keyExtractor={(item) => item.id.toString()}
         data={photos}
         showsVerticalScrollIndicator={false}
-        style={{ borderColor: "silver", borderWidth: 2 }}
         ItemSeparatorComponent={(props) => {
           return <View style={{ height: 2, backgroundColor: "silver" }} />;
         }}
